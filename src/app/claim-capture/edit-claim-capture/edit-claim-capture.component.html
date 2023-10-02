@@ -1,0 +1,41 @@
+<div class="add-role-section">
+  <h4 class="bg-blue text-white py-2 heading">Edit Captured Claim</h4>
+  <hr>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form (ngSubmit)="onSubmit()" #editForm="ngForm" enctype="multipart/form-data">
+
+
+          <div class="form-group">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" class="form-control" [(ngModel)]="selectedAmount" name="selectedAmount" required min="0" />
+          </div>
+         
+          <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" id="date" class="form-control" [(ngModel)]="selectedDate" name="selectedDate" required />
+          </div>
+         
+          <div class="form-group">
+            <label for="uploadProof">Upload Proof (Current File: {{ currentFileName }})</label>
+            <input type="file" id="uploadProof" class="form-control" (change)="onFileSelect($event)" accept=".pdf" />
+          </div>
+        
+        
+          <!-- Display the selected file name separately -->
+          <div class="form-group">
+            <label>Selected File:</label>
+            <span>{{ updatedFileName || currentFileName }}</span>
+          </div>
+         
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+  

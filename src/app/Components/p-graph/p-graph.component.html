@@ -1,0 +1,8 @@
+<div style="display: block">
+    <canvas baseChart
+            [datasets]="[{ data: totalNumHours, label: 'Total Num Hours' }, { data: billableOverTime, label: 'Billable Over Time' }]"
+            [labels]="projectNames"
+            [options]="{ responsive: true }"
+            baseChartType="bar">
+    </canvas>
+  </div>

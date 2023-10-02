@@ -1,0 +1,45 @@
+<div class="report-container">
+  <div class="header">
+    <div class="logo">
+      <img class="logo" src="assets/comps.jpg" alt="Company Logo">
+    </div>
+    <div class="company-details">
+      <h1>Moyo</h1>
+      <p>Building D </p>
+      <p>242 on Jean Office Park</p>  
+      <p>242 Jean Ave, Die Hoewes</p> 
+      <p>Centurion</p>
+      <p>0157</p>
+    </div>
+  </div>
+  <h2 class="report-name">Team Hours Report</h2>
+  <button (click)="downloadPdfp()" class="download-button">Download PDF</button>
+  <table class="report-table">
+    <!-- Table header -->
+    <thead>
+      <tr>
+        <th>Project Name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Total Hours</th>
+      </tr>
+    </thead>
+    <!-- Table body -->
+    <tbody>
+      <ng-container *ngFor="let entry of groupedAllocations | keyvalue">
+        <tr *ngFor="let allocation of entry.value">
+          <td *ngIf="allocation === entry.value[0]">{{ entry.key }}</td>
+          <td>{{ allocation.firstName }}</td>
+          <td>{{ allocation.lastName }}</td>
+          <td>{{ allocation.totalNumHours }}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td class="total-label">Total</td>
+          <td>{{ projectTotalHours.get(entry.key) }}</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

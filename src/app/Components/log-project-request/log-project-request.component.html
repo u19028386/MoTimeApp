@@ -1,0 +1,29 @@
+<div class="add-role-section">
+  <h4 class="bg-blue text-white py-2 heading">Log Project Request</h4>
+  <hr>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form [formGroup]="requestForm" class="form-horizontal" (ngSubmit)="onSubmit()">
+          <div class="form-group pt-3">
+            <div class="input-field">
+            <label class="col-sm-2" for="projectAllocationDescription">Description:</label>
+            <input class="form-control" type="text" id="projectRequestDescription" formControlName="projectRequestDescription"/>
+            </div>
+          </div>
+         
+          <!-- Date selection -->
+          <!-- <div class="form-group pt-3">
+            <div class="input-field">
+            <label class="col-sm-2" for="date">Date:</label>
+            <input class="form-control" type="date" id="date" formControlName="projectRequestDate" />
+          </div>
+          </div> -->
+          <!-- Submit and Cancel buttons -->
+          <button type="submit" class="btn btn-md btn-primary" style="margin-right: 10px;">Log Project Request</button>
+          <button type="button" class="btn btn-md btn-secondary" (click)="cancel()">Cancel</button>
+        </form>
+        </div>
+    </div>
+  </div>
+</div>

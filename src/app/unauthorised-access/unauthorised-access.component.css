@@ -1,0 +1,27 @@
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      text-align: center;
+      margin: 100px auto;
+    }
+
+    .error-message {
+      font-size: 24px;
+      color: #ff6347;
+    }
+
+    .back-to-dashboard {
+      margin-top: 20px;
+      font-size: 18px;
+      text-decoration: none;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .back-to-dashboard:hover {
+      background-color: #45a049;
+    }

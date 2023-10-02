@@ -1,0 +1,76 @@
+/* Add your desired styles here */
+.report-container {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  max-width: 50000px !important;;
+  max-height: 50000px !important;; 
+}
+
+.company-details {
+  max-width: 60%;
+}
+
+.company-details h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.company-details p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.report-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.download-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #075c86;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.download-button:hover {
+  background-color: #0056b3;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.report-table th, .report-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.report-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.total-label {
+  font-weight: bold;
+}
+
+/* Add more styles as needed */

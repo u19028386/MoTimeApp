@@ -1,0 +1,24 @@
+
+<div class="roles-section">
+  <h2 class="heading text-center">Audit Log</h2>
+
+  <div class="actions">
+    <div class="search-container">
+      <input type="text" [(ngModel)]="searchQuery" class="search-input" placeholder="Search..." (input)="filterLogs()">
+      <button class="btn btn-sm btn-primary search-button" (click)="filterLogs()">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+
+  <div *ngFor="let log of filteredLogs.length ? filteredLogs : auditLogs" class="log-item">
+    <div>Actor: {{ log.actor }}</div>
+    <div>Action: {{ log.actionPerformed }}</div>
+    <div>Entity: {{ log.entityType }}</div>
+    <div>Critical Data: {{ log.criticalData }}</div>
+    <div>Date: {{ log.auditTimeStamp | date: 'short' }}</div>
+    <hr>
+  </div>
+</div>
+
+

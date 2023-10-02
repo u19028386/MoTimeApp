@@ -1,0 +1,19 @@
+<div>
+    <h2>Select User Role</h2>
+    <select [(ngModel)]="selectedUserRole">
+      <option *ngFor="let role of userRoles" [value]="role.userRoleId">{{ role.userRoleName }}</option>
+    </select>
+  </div>
+  
+  <div>
+    <h2>Select Permissions</h2>
+    <div *ngFor="let permission of permissions">
+      <label>
+        <input type="checkbox" [checked]="selectedPermissions.includes(permission.permissionId)" (change)="togglePermissionSelection(permission.permissionId)" />
+        {{ permission.permissionName }}
+      </label>
+    </div>
+  </div>
+  
+  <button (click)="addPermissions()">Add Permissions</button>
+  

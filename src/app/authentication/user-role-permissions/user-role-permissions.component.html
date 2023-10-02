@@ -1,0 +1,9 @@
+<div *ngFor="let role of roles">
+    <div>{{ role.userRoleName }}</div>
+    <ul>
+      <li *ngFor="let permission of permissions">{{ permission.permissionName }}</li>
+    </ul>
+    <button (click)="editPermissions(role.userRoleId)">Edit Permissions</button>
+    <hr />
+  </div>
+  

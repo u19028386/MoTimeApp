@@ -1,0 +1,65 @@
+<div class="add-role-section">
+  <h4 class="bg-blue text-white py-2 heading">Add a Calendar Event</h4>
+  <hr>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form [formGroup]="calendarForm" (ngSubmit)="onSubmit()">
+          <div class="form-group pt-3">
+            <div class="input-field">
+              <label class="col-sm-2" for="calendarItemName">Name:</label>
+              <input type="text" id="calendarItemName" formControlName="calendarItemName" class="form-control" placeholder="Please enter the event name" required/>
+              <div *ngIf="isSubmitted && calendarForm.get('calendarItemName')?.errors?.['required']" class="text-danger">Name is required.</div>
+            </div>
+          </div>
+
+
+          <div class="form-group pt-3">
+            <div class="input-field">
+              <label class="col-sm-2" for="calendarItemDescription">Description:</label>
+              <div class="col-sm-6">
+                <textarea placeholder="Please enter the description for the calendar event" id="calendarItemDescription" formControlName="calendarItemDescription" class="form-control" required></textarea>
+                <div *ngIf="isSubmitted && calendarForm.get('calendarItemDescription')?.errors?.['required']" class="text-danger">Description is required.</div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group pt-3">
+            <div class="input-field">
+              <label class="col-sm-2" for="location">Location:</label>
+              <input placeholder="Please enter the event location here" class="input-field" type="text" id="location" formControlName="location" class="form-control" required/>
+              <div *ngIf="isSubmitted && calendarForm.get('location')?.errors?.['required']" class="text-danger">Location is required.</div>
+            </div>
+          </div>
+
+          <div class="form-group pt-3">
+            <div class="input-field">
+              <label class="col-sm-2" for="date">Date:</label>
+              <input class="input-field" type="date" id="date" formControlName="date" class="form-control" [min]="getCurrentDate()" required/>
+              <div *ngIf="isSubmitted && calendarForm.get('date')?.errors?.['required']" class="text-danger">Date is required.</div>
+            </div>
+          </div>
+
+
+          <div class="form-group pt-3">
+            <label class="col-sm-2" for="startTime">Choose start time:</label>
+            <timepicker id="startTime" name="startTime" formControlName="startTime" class="form-control" required></timepicker>
+            <div *ngIf="isSubmitted && calendarForm.get('startTime')?.errors?.['required']" class="text-danger">Start Time is required.</div>
+          </div>
+        
+          <div class="form-group">
+            <label for="endTime">Choose end time:</label>
+            <timepicker id="endTime" name="endTime" formControlName="endTime" class="form-control" required></timepicker>
+            <div *ngIf="isSubmitted && calendarForm.get('endTime')?.errors?.['required']" class="text-danger">End Time is required.</div>
+          </div>
+        
+          <div class="form-group">
+            <button type="submit"  class="btn btn-md btn-primary">Add Calendar</button>
+            <button type="button" (click)="cancel()" class="btn btn-md btn-secondary">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

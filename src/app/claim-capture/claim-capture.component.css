@@ -1,0 +1,31 @@
+/* Position the tooltip container relative to the button */
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+  }
+ 
+  /* Style the hover message */
+  .hover-message {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 1; /* Ensure the message appears above other elements */
+    white-space: nowrap; /* Prevent the message from breaking into multiple lines */
+    top: 100%; /* Position the message just below the button */
+    left: 50%; /* Center the message horizontally relative to the button */
+    transform: translateX(-50%); /* Centering adjustment */
+  }
+ 
+  /* Show the hover message when the button is hovered */
+  .tooltip-container:hover .hover-message {
+    display: block;
+  }
+ 
+  /* Responsive table container */
+.table-container {
+    overflow-x: auto; /* Add horizontal scrolling for small screens */
+    max-width: 100%; /* Ensure the container doesn't exceed the screen width */
+  }

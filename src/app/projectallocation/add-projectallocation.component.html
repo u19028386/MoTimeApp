@@ -1,0 +1,160 @@
+
+<div class="add-role-section">
+  <h4 class="bg-blue text-white py-2 heading">Allocate Employee To Project</h4>
+  <hr>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form [formGroup]="projectAForm" (ngSubmit)="onSubmit()">
+
+
+            <div class="form-group pt-3">
+              <div class="input-field">
+                <label class="col-sm-2" for="projectId">Project:</label>
+                <select class="form-control" id="projectId" formControlName="projectId" required>
+                  <option value="" disabled>Select Project</option>
+                  <option *ngFor="let project of projects" [value]="project.projectId">
+                    {{ project.projectName}}
+                  </option>
+                </select>
+              </div>
+                <div *ngIf="isSubmitted && projectAForm.get('projectId')?.errors?.['required']" class="text-danger">Project is required.</div>
+            </div>
+
+
+            <div class="form-group pt-3">
+              <div class="input-field">
+              <label class="col-sm-2" for="employeeId">Employee:</label>
+              <select class="form-control" id="employeeId" formControlName="employeeId" required>
+                <option value="" disabled>Select Employee</option>
+                <ng-container *ngIf="filteredEmployees.length > 0; else noResults">
+                  <option *ngFor="let employee of filteredEmployees" [value]="employee.employeeId">
+                    {{ employee.pLastName }} {{ employee.pFirstName }}
+                  </option>
+                </ng-container>
+                <ng-template #noResults>
+                  <option disabled>No matching employees found</option>
+                </ng-template>
+              </select>
+              <input
+                type="text"
+                id="employeeSearch"
+                placeholder="Search Employee"
+                (input)="filterEmployees($event)"
+              />
+              <div *ngIf="isSubmitted && projectAForm.get('employeeId')?.errors?.['required']" class="text-danger">Employee is required.</div>
+            </div>
+            </div>
+
+
+            <div class="form-group pt-3">
+              <div class="input-field">
+              <label  class="col-sm-2" for="isEligibleToClaim">Is Eligible to Claim:</label>
+              <input type="checkbox" formControlName="isEligibleToClaim" required (change)="updateClaimableAmount()">
+              </div>
+            </div>
+        
+          <div class="form-group pt-3">
+            <div class="input-field">
+            <label  class="col-sm-2" for="claimItemId">Claim Item:</label>
+            <select class="form-control" id="claimItemId" formControlName="claimItemId" required [disabled]="!projectAForm.get('isEligibleToClaim')?.value">
+                <option value="" disabled>Select Claim Item</option>
+                <option *ngFor="let item of claimitems" [value]="item.claimItemId">{{ item.claimItemName }}</option>
+            </select>
+            </div>
+        </div>
+        
+          <div class="form-group pt-3">
+            <div class="input-field">
+              <label for="claimableAmount">Claimable Amount:</label>
+            <input
+              type="number"
+              formControlName="claimableAmount"
+              class="form-control"
+            />
+            <div
+              *ngIf="projectAForm.get('claimableAmount')?.hasError('required')"
+              class="text-danger"
+            >
+              Claimable Amount is required.
+            </div>
+            <div
+              *ngIf="projectAForm.get('claimableAmount')?.hasError('negativeNumber')"
+              class="text-danger"
+            >
+              Claimable Amount cannot be negative.
+            </div>
+          </div> 
+        </div>
+
+
+          <div class="form-group pt-3">
+            <div class="input-field">
+            <label class="col-sm-2" for="totalNumHours">Total Number of Hours:</label>
+            <input
+              type="number"
+              formControlName="totalNumHours"
+              class="form-control"
+            />
+            <div
+              *ngIf="projectAForm.get('totalNumHours')?.hasError('required')"
+              class="text-danger"
+            >
+              Total Num Hours is required.
+            </div>
+            <div
+              *ngIf="projectAForm.get('totalNumHours')?.hasError('negativeNumber')"
+              class="text-danger"
+            >
+              Total Number Hours cannot be negative.
+            </div>
+            </div>
+          </div>
+        
+          <div class="form-group pt-3">
+            <div class="input-field">
+            <label class="col-sm-2" for="billableOverTime">Billable Overtime:</label>
+            <input
+              type="number"
+              formControlName="billableOverTime"
+              class="form-control"
+            />
+            <div
+              *ngIf="projectAForm.get('billableOverTime')?.hasError('required')"
+              class="text-danger"
+            >
+              Billable OverTime is required.
+            </div>
+            <div
+              *ngIf="projectAForm.get('billableOverTime')?.hasError('negativeNumber')"
+              class="text-danger"
+            >
+              Billable OverTime cannot be negative.
+            </div>
+
+            </div>
+          </div>
+
+
+          <div class="form-group pt-3">
+            <div class="input-field">
+            <label  class="col-sm-2" for="isOperationalManager">Is Operational Manager:</label>
+            <input type="checkbox" formControlName="isOperationalManager" (change)="updateOperationalManager()" >
+            </div>
+          </div>
+        
+          <div class="form-group pt-3">
+            <div class="input-field">
+            <label class="col-sm-2" for="isProjectManager">Is Project Manager:</label>
+            <input type="checkbox" formControlName="isProjectManager" (change)="updateProjectManager()">
+          </div>
+          </div>
+        
+            <button type="submit" class="btn btn-md btn-primary" style="margin-right: 10px;">Allocate</button>
+            <button type="button" class="btn btn-md btn-secondary" (click)="cancel()">Cancel</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="add-role-section">
+    <h4 class="bg-blue text-white py-2 heading">Submitted Claims</h4>
+    <hr>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="table-container">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="table-heading">Full Name</th>
+                      <th scope="col" class="table-heading">Project Name</th>
+                      <th scope="col" class="table-heading">Claim Name</th>
+                      <th scope="col" class="table-heading">Claim Amount</th>
+                      <th scope="col" class="table-heading">Claimed Amount</th>
+                      <th scope="col" class="table-heading">Date</th>
+                      <th scope="col" class="table-heading">Status</th>
+                      <th  *ngIf="role == 'Project Manager' || role == 'Operational Manager'" scope="col" class="table-heading">Manage</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let claim of claims" class="table-row">
+                      <td class="table-cell">{{ claim.empname }} {{ claim.emplastname }}</td>
+                      <td class="table-cell">{{ claim.projectname }}</td>
+                      <td class="table-cell">{{ claim.claimItemName }}</td>
+                      <td class="table-cell">R {{ claim.claimableAmount }}</td>
+                      <td class="table-cell">R {{ claim.amount }}</td>
+                      <td class="table-cell">{{ claim.date | date:'yyyy-MM-dd' }}</td>
+                      <td class="table-cell">{{ claimStatuses[claim.claimStatusId] }}</td>
+                      <td  *ngIf="role == 'Project Manager' || role == 'Operational Manager'" style="border: 1px solid #000; padding: 8px;">
+
+                        <!-- Accept button -->
+                        <button
+                          *ngIf="claimStatuses[claim.claimStatusId] === 'Pending'"
+                          class="btn btn-sm btn-outline-success"
+                          (click)="openAcceptConfirmationDialog(claim.claimId)"
+                        >
+                          Accept
+                        </button>
+             
+                        <!-- Reject button -->
+                        <button
+                          *ngIf="claimStatuses[claim.claimStatusId] === 'Pending'"
+                          class="btn btn-sm btn-outline-danger"
+                          (click)="openRejectConfirmationDialog(claim.claimId)"
+                        >
+                          Reject
+                        </button>
+             
+                        <!-- Download button -->
+                        <button class="btn btn-sm btn-outline-primary" (click)="downloadProof(claim)">
+                          <i class="fa fa-download"></i> Download
+                        </button>
+             
+                        <!-- View button -->
+                        <button class="btn btn-sm btn-outline-info" (click)="viewProof(claim)">
+                          <i class="fa fa-eye"></i> View
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>    

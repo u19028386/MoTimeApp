@@ -1,0 +1,105 @@
+<div class="add-role-section">
+  <h4 class="bg-blue text-white py-2 heading">Capture Claim</h4>
+  <hr>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form [formGroup]="captureForm" class="form-horizontal" (ngSubmit)="onSubmit()">
+          <!-- Employee selection -->
+          <div class="form-group pt-3">
+            <div class="input-field">
+            <label  class="col-sm-2" for="projectAllocationId">Employee:</label>
+            <select   class="form-control" id="projectAllocationId" [class.disabled-dropdown]="true"  [(ngModel)]="employeeId" formControlName="employeeId" required (change)="onEmployeeChange()"  >
+              <option *ngFor="let allocation of allocations" [value]="allocation.employeeId">
+                {{ allocation.lastName }} {{ allocation.firstName }}
+              </option>
+            </select>
+            </div>
+          </div>
+    
+          <!-- Project selection -->
+          <div class="form-group pt-3">
+            <div class="input-field">
+            <label class="col-sm-2" for="projectId">Project:</label>
+            <select class="form-control" id="projectId" formControlName="projectId" (change)="onProjectChange()">
+              <option value="" disabled>Select Project</option>
+              <option *ngFor="let project of filteredProjects" [value]="project.projectAllocationId">
+                {{ project.pName }}
+              </option>
+            </select>
+            </div>
+          </div>
+    
+    
+          <!-- Claim and Claimable Amount fields -->
+          <div class="form-group pt-3">
+            <div class="input-field">
+            <label class="col-sm-2" for="claim">Claim:</label>
+            <input class="form-control" type="text" id="claim" formControlName="claim" readonly />
+            </div>
+          </div>
+    
+    
+          <div class="form-group pt-3">
+            <div class="input-field">
+            <label class="col-sm-2" for="claimableAmount">Claimable Amount:</label>
+            <input class="form-control" type="text" id="claimableAmount" formControlName="claimableAmount" readonly />
+            </div>
+          </div>
+    
+    
+          <div class="form-group pt-3">
+            <div class="input-field">
+            <label class="col-sm-2" for="amount">Amount:</label>
+            <div class="col-sm-6">
+              <input class="form-control" type="number" class="form-control" id="amount" formControlName="amount" [required]="true">
+              <div *ngIf="captureForm.get('amount')?.hasError('required')" class="text-danger">
+                Amount is required.
+              </div>
+              <div *ngIf="captureForm.get('amount')?.hasError('negativeAmount')" class="text-danger">
+                Amount must not be negative.
+              </div>
+              <div *ngIf="captureForm.get('amount')?.hasError('amountExceedsClaimable')" class="text-danger">
+                Amount cannot exceed Claimable Amount.
+              </div>
+            </div>
+            </div>
+          </div>
+         
+          <!-- Date selection -->
+          <div class="form-group pt-3">
+            <div class="input-field">
+            <label class="col-sm-2" for="date">Date:</label>
+            <input class="form-control" type="date" id="date" formControlName="date" required />
+            </div>
+          </div>
+    
+    
+          <!-- File upload -->
+          <div class="form-group pt-3">
+            <div class="input-field">
+            <label class="col-sm-2" class="col-sm-2" for="uploadProo">Upload File:</label>
+            <div class="col-sm-10">
+              <input class="form-control" type="file" id="uploadProof" (change)="onFileChange($event)" accept=".pdf" />
+              <div *ngIf="captureForm.get('uploadProof')?.hasError('noFileSelected')" class="text-danger">
+                Please select a file to upload.
+              </div>
+            </div>
+            </div>
+          </div>
+    
+    
+          <!-- Submit and Cancel buttons -->
+          <div class="form-group pt-3">
+            <div class="input-field">
+            <div class="col-sm-offset-1 col-sm-6">
+              <button style="margin-right: 1em;" type="submit" class="btn btn-md btn-primary">Add Claim Capture</button>
+              <button type="button" class="btn btn-sm btn-secondary" (click)="cancel()">Cancel</button>
+            </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

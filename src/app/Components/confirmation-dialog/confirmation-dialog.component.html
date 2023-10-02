@@ -1,0 +1,10 @@
+<div mat-dialog-content class="mat-dialog-content">
+    <button class="close-button" (click)="onCancel()">&#10006;</button>
+    <h2 class="custom-title">{{ data.title }}</h2>
+    <p class="custom-message">{{ data.message }}</p>
+    <div class="custom-button-container">
+      <button style="margin-right: 1em;" type="submit" class="btn btn-sm btn-primary" (click)="onConfirm(true)">Yes</button>
+      <button class="btn btn-sm btn-secondary" (click)="onConfirm(false)">No</button>
+    </div>
+  </div>
+  

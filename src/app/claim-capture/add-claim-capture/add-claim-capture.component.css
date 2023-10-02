@@ -1,0 +1,4 @@
+.disabled-dropdown {
+    background-color: #f0f0f0; /* Change the background color to a disabled style */
+    pointer-events: none; /* Disable pointer events, preventing user interaction */
+  }

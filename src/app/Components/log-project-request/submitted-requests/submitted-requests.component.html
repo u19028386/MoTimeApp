@@ -1,0 +1,49 @@
+<div class="add-role-section">
+    <h4 class="bg-blue text-white py-2 heading">Submitted Claims</h4>
+    <hr>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="table-container">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="table-heading">Full Name</th>
+                      <th scope="col" class="table-heading">Description</th>
+                      <th scope="col" class="table-heading">Date</th>
+                      <th scope="col" class="table-heading">Status</th>
+                      <th scope="col" class="table-heading">Manage</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let claim of requests" class="table-row">
+                      <td class="table-cell">{{ claim.empname }} {{ claim.emplastname }}</td>
+                      <td class="table-cell">{{ claim.projectRequestDescription }}</td>
+                      <td class="table-cell">{{ claim.projectRequestDate | date:'yyyy-MM-dd' }}</td>
+                      <td class="table-cell">{{ requestStatuses[claim.projectRequestStatusId] }}</td>
+                      <td class="table-cell table-actions">
+                        <!-- Accept button -->
+                        <button
+                          *ngIf="requestStatuses[claim.projectRequestStatusId] === 'Pending'"
+                          class="btn btn-sm btn-outline-success"
+                          (click)="openAcceptConfirmationDialog(claim.projectRequestId)"
+                        >
+                          Accept
+                        </button>
+             
+                        <!-- Reject button -->
+                        <button
+                          *ngIf="requestStatuses[claim.projectRequestStatusId] === 'Pending'"
+                          class="btn btn-sm btn-outline-danger"
+                          (click)="openRejectConfirmationDialog(claim.projectRequestId)"
+                        >
+                          Reject
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>    

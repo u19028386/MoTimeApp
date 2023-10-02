@@ -1,0 +1,82 @@
+<div class="add-role-section">
+  <h4 class="bg-blue text-white py-2 heading">Add Client</h4>
+  <hr>
+<div class="container">
+  <div class="row justify-content-center">  
+    <div class="col-md-8">
+      <form [formGroup]="clientForm" class="form-horizontal" (ngSubmit)="onSubmit()">
+        <div class="form-group pt-3">
+          <div class="input-field">
+          <label class="col-sm-2" for="account">Account:</label>
+          <div class="col-sm-6">
+            <input class="form-control" id="account" placeholder="Enter account name" [required]="true" formControlName="account">
+            <div *ngIf="isSubmitted && clientForm.get('account')?.errors?.['required']" class="text-danger">Account is required.</div>
+          </div>
+          </div>
+        </div>
+         
+        <div class="form-group pt-3">
+          <div class="input-field">
+          <label class="col-sm-2" for="department">Department:</label>
+          <div class="col-sm-6">
+            <input class="form-control" id="department" placeholder="Enter department" [required]="true" formControlName="department">
+            <div *ngIf="isSubmitted && clientForm.get('department')?.errors?.['required']" class="text-danger">Department is required.</div>
+          </div>
+          </div>
+        </div>
+  
+  
+     
+        <div class="form-group pt-3">
+          <div class="input-field">
+          <label class="col-sm-2" for="siteCode">Site Code:</label>
+          <div class="col-sm-6">
+            <div class="input-group">
+              <input class="form-control" id="siteCode" placeholder="Enter site Code" [required]="true" formControlName="siteCode">
+              <div class="input-group-append">
+                <span class="input-group-text" data-toggle="tooltip" data-placement="right" title="Site Code must 4 capital letters">
+                  <i class="fa fa-info"></i>
+                </span>
+              </div>
+            </div>
+            </div>
+            <div *ngIf="isSubmitted && clientForm.get('siteCode')?.errors?.['required']" class="text-danger">Site Code is required.</div>
+          </div>
+        </div>
+  
+  
+        <div class="form-group pt-3">
+          <div class="input-field">
+          <label class="col-sm-2" for="projectCode">Project Code:</label>
+          <div class="col-sm-6">
+            <div class="input-group">
+              <input class="form-control" id="projectCode" placeholder="Enter project Code" [required]="true" formControlName="projectCode">
+              <div class="input-group-append">
+                <span class="input-group-text" data-toggle="tooltip" data-placement="right" title="Project Code must 4 numbers">
+                  <i class="fa fa-info"></i>
+                </span>
+              </div>
+            </div>
+            </div>
+            <div *ngIf="isSubmitted && clientForm.get('projectCode')?.errors?.['required']" class="text-danger">Project Code is required.</div>
+          </div>
+        </div>
+  
+  
+        <div class="form-group pt-3">
+          <div class="input-field">
+          <label class="col-sm-1" for="accountManager">Account Manager:</label>
+          <div class="col-sm-6">
+            <input class="form-control" id="accountManager" placeholder="Enter account Manager" [required]="true" formControlName="accountManager">
+            <div *ngIf="isSubmitted && clientForm.get('accountManager')?.errors?.['required']" class="text-danger">Account Manager is required.</div>
+          </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-md btn-primary" style="margin-right: 10px;">Add Client</button>
+        <button type="button" class="btn btn-md btn-secondary" (click)="cancel()">Cancel</button>
+         
+       
+      </form>
+    </div>
+  </div>
+</div>

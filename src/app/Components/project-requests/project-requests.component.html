@@ -1,0 +1,49 @@
+<div class="roles-section">
+  <h2 class="heading text-center">Project Requests</h2>
+  <div class="actions">
+    <button type="button" class="btn btn-sm btn-primary add-button" routerLink="/project-request">
+      <i class="fa fa-plus"></i> Log Project Request
+    </button>
+  </div>
+  <div class="table-container">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col" class="table-heading">Full Name</th>
+        <th scope="col" class="table-heading">Description</th>
+        <th scope="col" class="table-heading">Date</th>
+        <th scope="col" class="table-heading">Status</th>
+        <th scope="col" class="table-heading">Manage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let claim of projectRequests" class="table-row">
+        <td class="table-cell">{{ claim.empname }} {{ claim.emplastname }}</td>
+        <td class="table-cell">{{ claim.projectRequestDescription }}</td>
+        <td class="table-cell">{{ claim.projectRequestDate | date:'yyyy-MM-dd' }}</td>
+        <td class="table-cell">{{ requestStatuses[claim.projectRequestStatusId] }}</td>
+        <td class="table-cell table-actions">
+          <!-- Edit button  -->
+          
+
+
+          <!-- Submit button  -->
+    <div class="tooltip-container">
+      <button
+        class="btn btn-sm btn-outline-primary"
+        (click)="submitProjectRequest(claim.projectRequestId)"
+        [disabled]="requestStatuses[claim.projectRequestId] === 'Pending'"
+        [ngClass]="{'disabled-button': requestStatuses[claim.projectRequestId] === 'Pending'}"
+      >
+        <i class="fa fa-check"></i> Submit
+      </button>
+      <span *ngIf="requestStatuses[claim.projectRequestId] === 'Pending'" class="hover-message">
+        Cannot submit a claim more than once
+      </span>
+    </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div> 

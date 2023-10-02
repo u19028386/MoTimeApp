@@ -1,0 +1,31 @@
+<h4 class="bg-blue text-white py-2">Edit Help</h4>
+
+
+<form (ngSubmit)="updateHelp()" #editForm="ngForm" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="helpName">Help Name</label>
+    <input type="text" id="helpName" name="helpName" [(ngModel)]="helpName" class="form-control" required>
+  </div>
+ 
+  <div class="form-group">
+    <label for="helpDescription">Help Description</label>
+    <textarea id="helpDescription" name="helpDescription" [(ngModel)]="helpDescription" class="form-control" required></textarea>
+  </div>
+ 
+  <div class="form-group">
+    <label for="helpType">Help Type</label>
+    <select id="helpType" name="helpType" [(ngModel)]="helpTypeId" class="form-control" required>
+      <option *ngFor="let type of helpTypes" [value]="type.helpTypeId">{{ type.helpTypeName }}</option>
+    </select>
+  </div>
+ 
+  <div class="form-group">
+    <label for="material">Material</label>
+    <input type="file" id="material" name="material" (change)="onMaterialChange($event)" class="form-control">
+  </div>
+ 
+  <button type="submit" class="btn btn-primary">Update Help</button>
+  <!-- Adding space between buttons -->
+  <span style="margin-right: 10px;"></span>
+  <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+</form>

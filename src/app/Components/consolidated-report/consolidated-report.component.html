@@ -1,0 +1,53 @@
+<div class="add-role-section">
+  <h4 class="bg-blue text-white py-2 heading">Consolidated Project Hours Report</h4>
+  <hr><div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <button  class="btn btn-md btn-primary" (click)="downloadReportp('pdf')">Download PDF</button>
+      <table border="1" id="projectTable">
+        <thead>
+          <tr>
+            <th>Project Name</th>
+            <th>Employee Name</th>
+            <th>Estimated Hours (h)</th>
+            <th>Captured Hours (h)</th>
+            <th>Remaining Hours (h)</th>
+            <th>Remaining Hours (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let report of consolidatedReport; let i = index">
+            <tr>
+              <td [attr.colspan]="6"><strong>{{ report.projectName }} (End Date: {{ report.enddate | date: 'shortDate' }})</strong></td>
+            </tr>
+            <tr *ngFor="let employee of report.employees">
+              <td></td>
+              <td>{{ employee.firstName }} {{ employee.lastName }}</td>
+              <td>{{ employee.totalNumHours }}</td>
+              <td>{{ getCapturedHours(report, employee) }}</td>
+              <td>{{ getRemainingHours(report, employee) }}</td>
+              <td>{{ getRemainingPercentage(report, employee) }}</td>
+            </tr>
+            <tr *ngIf="i !== consolidatedReport.length - 1">
+              <td></td>
+              <td><strong>Subtotal</strong></td>
+              <td><strong>{{ report.totalNumHours }}</strong></td>
+              <td><strong>{{ report.totalCapturedHours }}</strong></td>
+              <td><strong>{{ report.remainingHours }}</strong></td>
+              <td><strong>{{ ((report.remainingHours / report.totalNumHours) * 100).toFixed(2) }}%</strong></td>
+            </tr>
+            <!-- Move the "Grand Total" row inside the ng-container -->
+            <tr *ngIf="i === consolidatedReport.length - 1">
+              <td></td>
+              <td><strong>Grand Total</strong></td>
+              <td><strong>{{ grandTotalNumHours }}</strong></td>
+              <td><strong>{{ grandTotalCapturedHours }}</strong></td>
+              <td><strong>{{ grandTotalRemainingHours }}</strong></td>
+              <td><strong>{{ ((grandTotalRemainingHours / grandTotalNumHours) * 100).toFixed(2) }}%</strong></td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+      </div>
+      </div>
+      </div>

@@ -1,0 +1,34 @@
+<div class="add-role-section">
+  <h4 class="bg-blue text-white py-2 heading">ERdit Claim Item</h4>
+  <hr>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form (ngSubmit)="updateClaimItemAndType()">
+          <div class="form-group pt-3">
+            <div class="input-field">
+              <label class="col-sm-2" for="claimItemName">Claim Item Name:</label>
+              <input type="text" class="form-control" id="claimItemName" [(ngModel)]="claimItem.claimItemName" name="claimItemName" required>
+            </div>
+          </div>
+  
+  
+          <div class="form-group pt-3">
+            <div class="input-field">
+              <label class="col-sm-2" for="claimType">Claim Type:</label>
+              <select class="form-control" id="claimType" [(ngModel)]="claimItem.claimTypeId" name="claimType" required>
+                <option *ngFor="let type of claimTypes" [value]="type.claimTypeId">{{ type.claimTypeName }}</option>
+              </select>
+            </div>
+          </div>
+  
+  
+          <div class="form-group pt-3">
+            <button type="submit" class="btn btn-sm btn-primary" style="margin-right: 10px;">Save</button>
+            <button type="button" class="btn btn-sm btn-secondary" (click)="cancel()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

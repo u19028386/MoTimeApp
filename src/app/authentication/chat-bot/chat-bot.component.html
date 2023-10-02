@@ -1,0 +1,28 @@
+<div class="chatbot-container">
+    <div class="chatbot-message">
+      <p>Hello! I'm your chatbot. Please enter your Employee ID to get project allocations.</p>
+    </div>
+ 
+    <div class="user-message">
+      <input type="number" [(ngModel)]="employeeId" placeholder="Enter Employee ID">
+      <button (click)="retrieveProjectAllocations()">Send</button>
+    </div>
+ 
+    <div *ngIf="projectAllocations.length > 0" class="chatbot-message">
+      <p>Here are your project allocations:</p>
+      <ul>
+        <li *ngFor="let allocation of projectAllocations">
+          > {{ allocation.pName }} for {{ allocation.totalNumHours }} hours,
+           end date
+           {{ allocation.enddate  | date:'yyyy/MM/dd' }}
+        </li>
+      </ul>
+    </div>
+ 
+    <div *ngIf="errorMessage" class="chatbot-message error-message">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+
+
+  <!-- <button type="button" class="btn btn-sm btn-warning" (click)="cancel()">Back</button> -->

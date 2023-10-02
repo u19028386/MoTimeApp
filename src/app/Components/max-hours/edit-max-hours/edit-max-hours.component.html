@@ -1,0 +1,43 @@
+<h4>Edit maximum Hours</h4>
+<hr>
+<div class="container">
+<div class="row">  
+<form [formGroup]="maxForm" class="form-horizontal" >
+  <div class="form-group">
+    <label for="maxHours">Max Hours:</label>
+    <input
+      type="number"
+      formControlName="maxHours"
+      class="form-control"
+    />
+    <div
+      *ngIf="maxForm.get('maxHours')?.hasError('required')"
+      class="text-danger"
+    >
+      Max Hours is required.
+    </div>
+    <div
+      *ngIf="maxForm.get('maxHours')?.hasError('negativeNumber')"
+      class="text-danger"
+    >
+      Max Hours cannot be negative.
+    </div>
+  </div>
+ 
+ 
+   
+    <div class="form-group">
+      <div class="col-sm-offset-1 col-sm-6">
+        <button type="button" class="btn btn-sm btn-danger" (click)="maxHour && openEditModal()">Edit Maximum Hours</button>
+        <button type="button" class="btn btn-sm btn-warning" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </form>
+  </div>
+</div>
+
+
+<app-edit-confirmation-modal
+  [displayModal]="displayModal"
+  (confirmEditEvent)="editConfirmed()"
+></app-edit-confirmation-modal>

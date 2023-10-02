@@ -1,0 +1,94 @@
+<div class="actions">
+  <button type="button" class="btn btn-sm btn-primary add-button" routerLink="/addclaimcapture">
+    <i class="fa fa-plus"></i> Capture claim
+  </button>
+</div>
+<div class="table-container">
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col" class="table-heading">Full Name</th>
+      <th scope="col" class="table-heading">Project Name</th>
+      <th scope="col" class="table-heading">Claim Name</th>
+      <th scope="col" class="table-heading">Claim Amount</th>
+      <th scope="col" class="table-heading">Claimed Amount</th>
+      <th scope="col" class="table-heading">Date</th>
+      <th scope="col" class="table-heading">file Name</th>
+      <th scope="col" class="table-heading">Status</th>
+      <th scope="col" class="table-heading">Manage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let claim of claims" class="table-row">
+      <td class="table-cell">{{ claim.empname }} {{ claim.emplastname }}</td>
+      <td class="table-cell">{{ claim.projectname }}</td>
+      <td class="table-cell">{{ claim.claimItemName }}</td>
+      <td class="table-cell">R {{ claim.claimableAmount }}</td>
+      <td class="table-cell">R {{ claim.amount }}</td>
+      <td class="table-cell">{{ claim.date | date:'yyyy-MM-dd' }}</td>
+      <td class="table-cell">{{ claim.proofName }}</td>
+      <td class="table-cell">{{ claimStatuses[claim.claimStatusId] }}</td>
+      <td class="table-cell table-actions">
+         <!-- Edit button  -->
+         <div class="tooltip-container">
+          <button
+            class="btn btn-sm btn-outline-primary"
+            (click)="editClaim(claim)"
+            [disabled]="claimStatuses[claim.claimId] === 'Pending'"
+            [ngClass]="{'disabled-button': claimStatuses[claim.claimId] === 'Pending'}"
+          >
+            <i class="fa fa-edit"></i> Edit
+          </button>
+          <span *ngIf="claimStatuses[claim.claimId] === 'Pending'" class="hover-message">
+            Edit not allowed for submitted claim
+          </span>
+        </div>
+
+
+        <!-- Submit button  -->
+  <div class="tooltip-container">
+    <button
+      class="btn btn-sm btn-outline-primary"
+      (click)="submitClaim(claim.claimId)"
+      [disabled]="claimStatuses[claim.claimId] === 'Pending'"
+      [ngClass]="{'disabled-button': claimStatuses[claim.claimId] === 'Pending'}"
+    >
+      <i class="fa fa-check"></i> Submit
+    </button>
+    <span *ngIf="claimStatuses[claim.claimId] === 'Pending'" class="hover-message">
+      Cannot submit a claim more than once
+    </span>
+  </div>
+
+
+        <!-- Download button -->
+        <button class="btn btn-sm btn-outline-success" (click)="downloadProof(claim)">
+          <i class="fa fa-download"></i> Download
+        </button>
+
+
+        <!-- View button  -->
+         <button class="btn btn-sm btn-outline-info" (click)="viewProof(claim)">
+          <i class="fa fa-eye"></i> View
+        </button>
+
+
+     <!-- Delete button -->
+<div class="tooltip-container">
+  <button
+    class="btn btn-sm btn-outline-danger"
+    (click)="deleteClaim(claim.claimId)"
+    [disabled]="claimStatuses[claim.claimId] === 'Pending'"
+    [ngClass]="{'disabled-button': claimStatuses[claim.claimId] === 'Pending'}"
+  >
+    <i class="fa fa-trash"></i> Delete
+  </button>
+  <span *ngIf="claimStatuses[claim.claimId] === 'Pending'" class="hover-message">
+    Delete not allowed
+  </span>
+</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div> 

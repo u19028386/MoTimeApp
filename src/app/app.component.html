@@ -1,0 +1,12 @@
+<div div class="sidebar">
+  <ng-container *ngIf="isLoggedIn()">
+    <app-side-bar></app-side-bar>
+  </ng-container>
+</div>
+<div class="main-content">
+  <router-outlet></router-outlet>
+  <ng-toast></ng-toast>
+  <app-inactive-warning *ngIf="showWarning"></app-inactive-warning>
+  <app-log-it-call></app-log-it-call>
+  <app-p-graph style="display: none;"></app-p-graph>
+</div>

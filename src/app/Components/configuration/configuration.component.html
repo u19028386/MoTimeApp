@@ -1,0 +1,8 @@
+<div class="timer-container">
+    <h1>Custom Timer Update</h1>
+    <p>Enter the desired time in hours and click "Set Timer" to update:</p>
+    <div class="input-group">
+      <input type="number" [(ngModel)]="customTimer" placeholder="Enter time in hours">
+      <button class="update-button" (click)="updateTimer()">Set Timer</button>
+    </div>
+  </div>

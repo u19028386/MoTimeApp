@@ -1,0 +1,47 @@
+
+<div class="add-role-section">
+  <h4 class="bg-blue text-white py-2 heading">Add Competency</h4>
+  <hr><div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      
+      <form [formGroup]="resourceForm" (ngSubmit)="onSubmit()">
+
+
+    <div class="form-group pt-3">
+      <div class="input-field">
+        <label for="resourceName">Competency Name:</label>
+        <input class="form-control" type="text" id="resourceName" formControlName="resourceName" required/>
+        </div>
+    </div>
+
+
+    <div class="form-group pt-3">
+      <div class="input-field">
+        <label for="resourceDescription">Competency Description:</label>
+    </div>
+    </div>
+
+
+    <div class="form-group pt-3">
+      <div class="input-field">
+        <label for="resourceTypeId">Competency Type:</label>
+        <select class="form-control" id="resourceTypeId" formControlName="resourceTypeId" required>
+          <option value="" disabled>Select Competency Type</option>
+          <option *ngFor="let type of resourceTypes" [value]="type.resourceTypeId">
+            {{ type.resourceTypeName }}
+          </option>
+        </select>
+        </div>
+    </div>
+   
+    <div class="form-group pt-3">
+        <button type="submit"  [disabled]="!resourceForm.valid" class="btn btn-md btn-primary">Add Resource</button>
+        <button type="button" class="btn btn-md btn-secondary" (click)="cancel()">Cancel</button>
+    </div>
+ 
+  </form>
+  </div>
+  </div>
+  </div>
+  </div>
